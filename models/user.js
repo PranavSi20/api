@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var CasesSchema = new Schema({
+var UserSchema = new Schema({
+  email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    },
   name: {
     type: String,
     required: true
@@ -29,7 +35,7 @@ var CasesSchema = new Schema({
   mobile: {
     type: Number,
     required: true
-  }  
+  }
 });
 
-module.exports = mongoose.model('user', CasesSchema);
+module.exports = mongoose.model('user', UserSchema);
