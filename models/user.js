@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   email: {
         type: String,
         required: true,
@@ -12,10 +13,6 @@ var UserSchema = new Schema({
         type: String, required: true
      },
   name: {
-    type: String,
-    required: true
-  },
-  gender: {
     type: String,
     required: true
   },
