@@ -16,7 +16,12 @@ router.post("/signup", (req, res, next) => {
     country: req.body.country,
     mobile:req.body.mobile
   });
-user.save();
+user.save(function (err, user) {
+      if (err) return console.error(err);
+      console.log(book.name + " saved to user collection.");
+    });
+
+
 });
 
 module.exports = router;
