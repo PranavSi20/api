@@ -3,39 +3,73 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-    },
-     password: {
-        type: String, required: true
-     },
-  name: {
+  wemail: {
+    type: String,
+    required: true,
+    unique: true,
+    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+  },
+  wpassword: {
     type: String,
     required: true
   },
-  age: {
+  wname: {
+    type: String,
+    required: true
+  },
+  wdob: {
+    type: Date,
+    required: true
+  },
+  wage: {
     type: Number,
     required: true
   },
-  address: {
+  waddress: {
     type: String,
     required: true
   },
-  city: {
+  wnearcity: {
     type: String,
     required: true
   },
-  country: {
+  wstate: {
     type: String,
     required: true
   },
-  mobile: {
+  wpincode: {
+    type: Number,
+    required: true
+  },
+  wmobile: {
+    type: Number,
+    required: true
+  },
+  woccupation: {
+    type: String,
+    required: true
+  },
+  wexperience: {
+    type: Number,
+    required: true
+  },
+  wskill: {
+    type: String,
+    required: true
+  },
+  wSecQue: {
+    type: String,
+    required: true
+  },
+  wSecAns: {
+    type: String,
+    required: true
+  },
+  wadhaar: {
     type: Number,
     required: true
   }
+
 });
 
 module.exports = mongoose.model('user', UserSchema);

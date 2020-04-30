@@ -7,19 +7,27 @@ const User = require("../models/user");
 router.post("/signup", (req, res, next) => {
   const user = new User({
     _id: new mongoose.Types.ObjectId(),
-    email: req.body.email,
-    password: req.body.password,
-    name: req.body.name,
-    age: req.body.age,
-    city: req.body.city,
-    address: req.body.address,
-    country: req.body.country,
-    mobile:req.body.mobile
+    wemail: req.body.wemail,
+    wpassword: req.body.wpassword,
+    wname: req.body.wname,
+    wdob: req.body.wdob,
+    wage: req.body.wage,
+    wnearcity: req.body.wnearcity,
+    waddress: req.body.waddress,
+    wstate: req.body.wstate,
+    wpincode: req.body.wpincode,
+    wmobile: req.body.wmobile,
+    woccupation: req.body.woccupation,
+    wexperience: req.body.wexperience,
+    wskill: req.body.wskill,
+    wSecQue: req.body.wSecQue,
+    wSecAns: req.body.wSecAns,
+    wadhaar: req.body.wadhaar
   });
-user.save(function (err, user) {
-      if (err) return console.error(err);
-      console.log(" saved to user collection.");
-    });
+  user.save(function(err, user) {
+    if (err) return console.error(err);
+    console.log(" saved to user collection.");
+  });
 
 
 });
