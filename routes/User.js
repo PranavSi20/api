@@ -28,8 +28,25 @@ router.post("/signup", (req, res, next) => {
     if (err) return console.error(err);
     console.log(" saved to user collection.");
   });
+});
 
+router.post("/login", function(req, res){
+  const username = req.body.username;
+  const password = req.body.password;
 
+  User.findOne({email:username}, function(err, foundUser){
+    if(err){
+      console.log(err);
+    }else{
+      if(foundUser){
+        if(foundUser.password === password){
+          console.log("logged in");
+          res.render("Dashbord");
+        }
+      }
+    }
+
+  });
 });
 
 module.exports = router;
