@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 const User = require("../models/user");
 
+
+
 router.post("/signup", (req, res, next) => {
   const user = new User({
     _id: new mongoose.Types.ObjectId(),
@@ -30,23 +32,31 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
+
+
+
 router.post("/login", function(req, res){
+
   const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({email:username}, function(err, foundUser){
+  User.findOne({wemail:username}, function(err, foundUser){
     if(err){
+      res.send("<h1>got clicked</h1>");
       console.log(err);
     }else{
       if(foundUser){
-        if(foundUser.password === password){
-          console.log("logged in");
-          res.render("Dashbord");
+        if(foundUser.wpassword === password){
+          res.send("logged in");
         }
       }
     }
 
   });
 });
+
+
+
+
 
 module.exports = router;
