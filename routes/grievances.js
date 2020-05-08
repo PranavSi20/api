@@ -22,6 +22,7 @@ router.post("/submit", (req, res, next) => {
       if (err) return console.error(err);
       console.log(" saved to grievance collection.");
     });
+    res.redirect("/status");
   });
 
 
