@@ -7,6 +7,15 @@ var ZonalEngineerSchema = mongoose.Schema({
         required: true,
         unique:true
     },
+    Password: {
+        type: String,
+        required: true
+        
+    },
+    IsActive: {
+        type: String,
+        required: true
+    },
     Name: {
         type: String,
         required:true
@@ -62,19 +71,19 @@ var ZonalEngineerSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    
-    AccountID: [
-        {
-            type: mongoose.Schema.Types.ObjectId, ref: 'Account',
-            require:true
-        }
-    ],
-    Experience: [
-        {
-            type: mongoose.Schema.Types.ObjectId, ref: 'Experience',
-            require:true
-        }
-    ]
+    CompanyName: {
+        type: String,
+        required: true
+    },
+    StartDate: {
+        type: Date,
+        required: true
+
+    },
+    EndDate: {
+        type: Date,
+        required: true
+    }
 
 
 }
