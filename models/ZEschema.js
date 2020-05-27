@@ -12,10 +12,6 @@ var ZonalEngineerSchema = mongoose.Schema({
         required: true
         
     },
-    IsActive: {
-        type: String,
-        required: true
-    },
     Name: {
         type: String,
         required:true
