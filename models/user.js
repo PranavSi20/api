@@ -11,11 +11,62 @@ var UserSchema = new Schema({
   },
   wpassword: {
     type: String,
-    required: true
+    required: true,
+    ValidatePassword() {
+      // Validate lowercase letters
+      var lowerCaseLetters = /[a-z]/g;
+      if(myInput.value.match(lowerCaseLetters)) {
+        letter.classList.remove("invalid");
+        letter.classList.add("valid");
+      } else {
+        letter.classList.remove("valid");
+        letter.classList.add("invalid");
+    }
+    
+      // Validate capital letters
+      var upperCaseLetters = /[A-Z]/g;
+      if(myInput.value.match(upperCaseLetters)) {
+        capital.classList.remove("invalid");
+        capital.classList.add("valid");
+      } else {
+        capital.classList.remove("valid");
+        capital.classList.add("invalid");
+      }
+    
+      // Validate numbers
+      var numbers = /[0-9]/g;
+      if(myInput.value.match(numbers)) {
+        number.classList.remove("invalid");
+        number.classList.add("valid");
+      } else {
+        number.classList.remove("valid");
+        number.classList.add("invalid");
+      }
+    
+      // Validate length
+      if(myInput.value.length >= 8) {
+        length.classList.remove("invalid");
+        length.classList.add("valid");
+      } else {
+        length.classList.remove("valid");
+        length.classList.add("invalid");
+      }
+    }
   },
   wname: {
     type: String,
-    required: true
+    required: true,
+    ValidateName(){
+      var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+      var name = document.getElementById('name').value;
+      if(!regName.test(name)){
+          alert('Please enter your full name (first & last name).');
+          document.getElementById('name').focus();
+          return false;
+      }else{
+          alert('Valid name given.');
+          return true;
+      }
   },
   wdob: {
     type: Date,
@@ -69,7 +120,29 @@ var UserSchema = new Schema({
     type: Number,
     required: true
   }
-
+}
 });
 
 module.exports = mongoose.model('user', UserSchema);
+module.exports = function(user) {
+  user.isValid(function (valid) {
+    if (valid) res.render({user: user});
+    else res.flash('error', 'User is not valid'), console.log(user.errors), res.redirect('/users');
+});
+  user.validatesPresenceOf('name', 'email');
+  user.validatesLengthOf('password', {min: 10, message: {min: 'Password is too short'}});
+  user.validatesInclusionOf('gender', {in: ['male', 'female']});
+  user.validatesNumericalityOf('age', {int: true});
+  user.validatesUniquenessOf('email', {message: 'email is not unique'});
+  user.validatesNumericalityOf('mobile', {int: true});
+  user.validatesNumericalityOf('aadhar', {int: true});
+  user.validatespresenceof('SecAns');
+  user.validatesPresenceOf('SecQue');
+  user.validatesPresenceOf('skill');
+  user.validatesNumericalityOf('experience',{int:true});
+  user.validatesPresenceOf('occupation');
+  user.validatesNumericalityOf('pincode',{int:true});
+  user.validatesPresenceOf('state');
+  user.validatesPresenceOf('nearcity');
+  user.validatesPresenceOf('address'); 
+};
