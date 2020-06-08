@@ -70,31 +70,69 @@ var UserSchema = new Schema({
   },
   wdob: {
     type: Date,
-    required: true
+    required: true,
+    
+checkForm() 
+{
+  var errMessage = "";
+    validateName();
+    validateSurname();
+    carSelect();
+    validateDOB();
+
+    if (errMessage == "") {
+    } else {
+        alert(errMessage);
+    }
+  },
+validateDOB(){
+    var dob = document.forms["ProcessInfo"]["txtDOB"].value;
+    var pattern = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+    if (dob == null || dob == "" || !pattern.test(dob)) {
+        errMessage += "Invalid date of birth\n";
+        return false;
+    }
+    else {
+        return true
+    }
+}
   },
   wage: {
     type: Number,
-    required: true
+    required: true,
+    match : /^[1-9]?[0-9]{1}$|^100$/
   },
   waddress: {
     type: String,
-    required: true
+    required: true,
+    validateAddress: function (val) {
+      console.log('val: ' + val);
+      var streetregex = /^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/;
+      if ( streetregex.test(val) ) {
+          console.log('true');
+      } else {
+          console.log('false');
+      }
+   }
   },
   wnearcity: {
     type: String,
-    required: true
-  },
+    required: true,
+    match:/^([a-zA-Z\u0080-\u024F]+(?:(\. )|-| |'))*[a-zA-Z\u0080-\u024F]*$/
+   },
   wstate: {
     type: String,
     required: true
   },
   wpincode: {
     type: Number,
-    required: true
+    required: true,
+    match:/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/
   },
   wmobile: {
     type: Number,
-    required: true
+    required: true,
+    match:/^([9]{1})([234789]{1})([0-9]{8})$/
   },
   woccupation: {
     type: String,
