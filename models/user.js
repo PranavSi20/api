@@ -70,8 +70,7 @@ var UserSchema = new Schema({
   },
   wdob: {
     type: Date,
-    required: true,
-    
+    required: true, 
 checkForm() 
 {
   var errMessage = "";
