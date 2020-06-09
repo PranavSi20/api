@@ -147,11 +147,13 @@ validateDOB(){
   },
   wSecQue: {
     type: String,
-    required: true
+    required: true,
+    match: /(?<=[\w\s](?:[\.\!\? ]+[\x20]*[\x22\xBB]*))(?:\s+(?![\x22\xBB](?!\w)))/
   },
   wSecAns: {
     type: String,
-    required: true
+    required: true,
+    match: /(?<=[\w\s](?:[\.\!\? ]+[\x20]*[\x22\xBB]*))(?:\s+(?![\x22\xBB](?!\w)))/
   },
   wadhaar: {
     type: Number,
