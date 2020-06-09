@@ -121,7 +121,8 @@ validateDOB(){
    },
   wstate: {
     type: String,
-    required: true
+    required: true,
+    match: /^([a-zA-z\s]{2,})$/
   },
   wpincode: {
     type: Number,
