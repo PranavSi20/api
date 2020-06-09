@@ -12,61 +12,12 @@ var UserSchema = new Schema({
   wpassword: {
     type: String,
     required: true,
-    ValidatePassword() {
-      // Validate lowercase letters
-      var lowerCaseLetters = /[a-z]/g;
-      if(myInput.value.match(lowerCaseLetters)) {
-        letter.classList.remove("invalid");
-        letter.classList.add("valid");
-      } else {
-        letter.classList.remove("valid");
-        letter.classList.add("invalid");
-    }
-    
-      // Validate capital letters
-      var upperCaseLetters = /[A-Z]/g;
-      if(myInput.value.match(upperCaseLetters)) {
-        capital.classList.remove("invalid");
-        capital.classList.add("valid");
-      } else {
-        capital.classList.remove("valid");
-        capital.classList.add("invalid");
-      }
-    
-      // Validate numbers
-      var numbers = /[0-9]/g;
-      if(myInput.value.match(numbers)) {
-        number.classList.remove("invalid");
-        number.classList.add("valid");
-      } else {
-        number.classList.remove("valid");
-        number.classList.add("invalid");
-      }
-    
-      // Validate length
-      if(myInput.value.length >= 8) {
-        length.classList.remove("invalid");
-        length.classList.add("valid");
-      } else {
-        length.classList.remove("valid");
-        length.classList.add("invalid");
-      }
-    }
+    match: / ^(?=.*\d).{4,8}$ /
   },
   wname: {
     type: String,
     required: true,
-    ValidateName(){
-      var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-      var name = document.getElementById('name').value;
-      if(!regName.test(name)){
-          alert('Please enter your full name (first & last name).');
-          document.getElementById('name').focus();
-          return false;
-      }else{
-          alert('Valid name given.');
-          return true;
-      }
+    match: /^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$/
   },
   wdob: {
     type: Date,
@@ -136,15 +87,18 @@ validateDOB(){
   },
   woccupation: {
     type: String,
-    required: true
+    required: true,
+    match: /^([\s\S]){1,20}([\s\.])/
   },
   wexperience: {
     type: Number,
-    required: true
+    required: true,
+    match: /^([\s\S]){1,20}([\s\.])/
   },
   wskill: {
     type: String,
-    required: true
+    required: true,
+    match: /^([\s\S]){1,20}([\s\.])/
   },
   wSecQue: {
     type: String,
@@ -160,9 +114,9 @@ validateDOB(){
     type: Number,
     required: true,
     match:"^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$"
-  }
+  },
 }
-});
+);
 
 module.exports = mongoose.model('user', UserSchema);
 module.exports = function(user) {
